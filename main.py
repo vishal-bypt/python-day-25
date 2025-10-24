@@ -9,6 +9,12 @@ model = joblib.load("sentiment_model.pkl")
 class InputText(BaseModel):
     text: str
 
+
+@app.get("/")
+def greet_json():
+    return {"Health Status": "OK"}
+
+
 @app.post("/predict")
 def predict_sentiment(data: InputText):
     prediction = model.predict([data.text])[0]
